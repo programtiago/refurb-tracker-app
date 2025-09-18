@@ -11,9 +11,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 
-import java.time.LocalDateTime;
-
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -48,4 +45,8 @@ public class Reception extends Operation{
     private String receptionedBy;
     @NotBlank(message = "The field 'sn' is required.")
     private String sn;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cpe_instance_id", nullable = false)
+    private CpeInstance cpeInstance;
 }

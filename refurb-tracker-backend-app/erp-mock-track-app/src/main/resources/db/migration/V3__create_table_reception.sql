@@ -4,5 +4,8 @@ CREATE TABLE TB_RECEPTION (
     purchase_order VARCHAR(9) NOT NULL,
     reception_date TIMESTAMP NOT NULL,
     pallet_id VARCHAR(13) NOT NULL,
-    receptioned_by VARCHAR(255) NOT NULL
+    receptioned_by VARCHAR(255) NOT NULL,
+    sn VARCHAR(255) NOT NULL,
+    cpe_instance_id BIGINT NOT NULL,
+    CONSTRAINT fk_cpe_instance FOREIGN KEY (cpe_instance_id) REFERENCES TB_CPE_INSTANCE(id)
 );

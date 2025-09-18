@@ -19,9 +19,6 @@ public class CpeInstance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
-    private String sn;
-
     @Enumerated(EnumType.STRING)
     private CpeStatus status;
 

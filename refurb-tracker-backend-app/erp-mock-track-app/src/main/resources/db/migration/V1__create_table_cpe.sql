@@ -4,7 +4,6 @@ CREATE TABLE TB_CPE (
    design VARCHAR(255) NOT NULL,
    part_no VARCHAR(10) NOT NULL,
    ean VARCHAR(13),
-   active BOOLEAN DEFAULT TRUE
+   active BOOLEAN DEFAULT TRUE,
+   CONSTRAINT unique_sap UNIQUE(sap)
 );
-
-CREATE UNIQUE INDEX idx_tb_cpe_sap ON TB_CPE(sap);
