@@ -1,0 +1,4 @@
+rootProject.name = 'refurb-tracker-app'
+
+include 'audit-track-app', 'erp-mock-track-app'
+

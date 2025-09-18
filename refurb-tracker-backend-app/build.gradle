@@ -1,0 +1,38 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.5.5' apply false
+	id 'io.spring.dependency-management' version '1.1.7' apply false
+}
+
+allprojects {
+	group = 'com.devtiago'
+	version = '0.0.1-SNAPSHOT'
+
+	repositories {
+		mavenCentral()
+	}
+}
+
+subprojects {
+	apply plugin: 'java'
+
+	java {
+		toolchain {
+			languageVersion = JavaLanguageVersion.of(17)
+		}
+	}
+
+	dependencies {
+		testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.0'
+		testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
+
+		//implementation 'org.springframework.boot:spring-boot-starter'
+		//testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+		//testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	}
+
+	test {
+		useJUnitPlatform()
+	}
+}
