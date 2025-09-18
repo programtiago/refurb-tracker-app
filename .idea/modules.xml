@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/refurb-tracker-app.iml" filepath="$PROJECT_DIR$/.idea/refurb-tracker-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/erp-mock-track-app/refurb-tracker-app.erp-mock-track-app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/erp-mock-track-app/refurb-tracker-app.erp-mock-track-app.main.iml" />
     </modules>
   </component>
 </project>
