@@ -6,11 +6,6 @@ spring:
     generate-unique-name: false
   driverClassName: org.h2.Driver
 
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
-  show-sql: true
-
   h2:
     console:
       enabled: true

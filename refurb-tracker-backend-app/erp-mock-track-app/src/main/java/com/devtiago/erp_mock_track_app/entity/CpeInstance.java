@@ -1,7 +1,7 @@
 package com.devtiago.erp_mock_track_app.entity;
 
+import com.devtiago.erp_mock_track_app.enums.CpeStatus;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,14 +12,20 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "TB_TESTING")
-public class Testing extends Operation {
+@Table(name = "TB_CPE_INSTANCE")
+public class CpeInstance {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "The field 'mac' is required.")
-    private String mac;
-    @NotBlank(message = "The field 'tested_by' is required.")
-    private String testedBy;
+
+    @Column(unique = true, nullable = false)
+    private String sn;
+
+    @Enumerated(EnumType.STRING)
+    private CpeStatus status;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "cpe_id")
+    private Cpe cpe;
 }
