@@ -6,14 +6,20 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 @MappedSuperclass
 @NoArgsConstructor
 @Getter
+@Setter
 public abstract class Operation {
 
     @Enumerated(EnumType.STRING)
     protected OperationType operationType;
+
+    private LocalDateTime operationDate;
 
     public Operation(OperationType operationType){
         this.operationType = operationType;

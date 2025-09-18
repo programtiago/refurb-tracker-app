@@ -39,8 +39,6 @@ public class Reception extends Operation{
     private String purchaseOrder; //POXXXXXXX
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
     @NotNull
-    @Column(name = "reception_date", nullable = false)
-    private LocalDateTime receptionDate;
     @Pattern(regexp = "P-\\d{11}", message = "The pallet_id must start with 'P-' followed by 11 digits")
     @NotBlank(message = "The field 'pallet_id' is required.")
     @Column(name = "pallet_id", nullable = false)
@@ -48,4 +46,6 @@ public class Reception extends Operation{
     @NotBlank(message = "The field 'receptionedBy' is required.")
     @Column(name = "receptioned_by", nullable = false)
     private String receptionedBy;
+    @NotBlank(message = "The field 'sn' is required.")
+    private String sn;
 }
