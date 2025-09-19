@@ -4,6 +4,7 @@ import com.devtiago.erp_mock_track_app.entity.Cpe;
 import com.devtiago.erp_mock_track_app.entity.dto.CpeDto;
 import com.devtiago.erp_mock_track_app.repository.CpeRepository;
 import com.devtiago.erp_mock_track_app.utils.mapper.CpeMapper;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,18 +12,20 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CpeService {
+public class QueryErpService {
 
     private final CpeRepository cpeRepository;
+
     private final CpeMapper cpeMapper;
 
-    public List<CpeDto> getAll(){
+    public List<CpeDto> findAll(){
         return cpeMapper.toListDto(cpeRepository.findAll());
     }
 
-    public CpeDto findById(Long id){
-       Cpe cpeResult = cpeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("No CPE found with the id " + id));
+    public CpeDto getCpeById(Long id) {
+        Cpe cpe = cpeRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("No CPE found with id " + id));
 
-        return cpeMapper.toDto(cpeResult);
+        return cpeMapper.toDto(cpe);
     }
 }

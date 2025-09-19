@@ -1,14 +1,15 @@
 package com.devtiago.erp_mock_track_app.entity;
 
-import com.devtiago.erp_mock_track_app.enums.OperationType;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.MappedSuperclass;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+
 
 @MappedSuperclass
 @NoArgsConstructor
@@ -16,18 +17,14 @@ import java.time.LocalDateTime;
 @Setter
 public abstract class Operation {
 
-    @Enumerated(EnumType.STRING)
-    protected OperationType operationType;
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    @NotNull
     private LocalDateTime operationDate;
-
-    public Operation(OperationType operationType){
-        this.operationType = operationType;
-    }
-
-    public void processOperation(Operation operation){
-        if (operation instanceof Reception reception){
-            System.out.println("Processing Reception ID: " + reception.getId());
-        }
-    }
+    @Column(length = 30, nullable = false)
+    @NotBlank
+    private String operationBy;
 }

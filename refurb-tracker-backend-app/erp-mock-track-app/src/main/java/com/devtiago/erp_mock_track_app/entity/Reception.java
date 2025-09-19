@@ -1,6 +1,6 @@
 package com.devtiago.erp_mock_track_app.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -16,9 +16,7 @@ import org.hibernate.validator.constraints.Length;
 @Getter
 @Setter
 @Entity
-@Table(name = "TB_RECEPTION", uniqueConstraints = {
-        @UniqueConstraint(columnNames = "reception_identifier")
-})
+@Table(name = "TB_ERP_RECEPTION")
 public class Reception extends Operation{
 
     @Id
@@ -34,19 +32,15 @@ public class Reception extends Operation{
     @NotBlank
     @Column(name = "purchase_order", nullable = false)
     private String purchaseOrder; //POXXXXXXX
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
-    @NotNull
     @Pattern(regexp = "P-\\d{11}", message = "The pallet_id must start with 'P-' followed by 11 digits")
     @NotBlank(message = "The field 'pallet_id' is required.")
     @Column(name = "pallet_id", nullable = false)
     private String palletId;
-    @NotBlank(message = "The field 'receptionedBy' is required.")
-    @Column(name = "receptioned_by", nullable = false)
-    private String receptionedBy;
     @NotBlank(message = "The field 'sn' is required.")
     private String sn;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cpe_instance_id", nullable = false)
+    @NotNull
     private CpeInstance cpeInstance;
+
 }

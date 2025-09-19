@@ -1,7 +1,7 @@
 package com.devtiago.erp_mock_track_app.controller;
 
 import com.devtiago.erp_mock_track_app.entity.dto.CpeDto;
-import com.devtiago.erp_mock_track_app.service.CpeService;
+import com.devtiago.erp_mock_track_app.service.QueryErpService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,19 +11,18 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cpes")
+@RequestMapping("/query")
 @RequiredArgsConstructor
-public class CpeController {
+public class QueryErpController {
 
-    private final CpeService cpeService;
-
-    @GetMapping
+    private final QueryErpService queryErpService;
+    @GetMapping("/cpes")
     public List<CpeDto> getAll(){
-        return cpeService.getAll();
+        return queryErpService.findAll();
     }
 
-    @GetMapping("/{id}")
-    public CpeDto getById(@PathVariable Long id){
-        return cpeService.findById(id);
+    @GetMapping("/cpes/{id}")
+    public CpeDto findCpeById(@PathVariable Long id){
+        return queryErpService.getCpeById(id);
     }
 }
