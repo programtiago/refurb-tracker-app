@@ -1,14 +1,14 @@
 package com.devtiago.erp_mock_track_app.entity;
 
 import com.devtiago.erp_mock_track_app.enums.TestStatus;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
+import org.hibernate.validator.constraints.Length;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,8 +30,12 @@ public class Testing extends Operation {
     @JoinColumn(name = "cpe_instance_id", nullable = false)
     private CpeInstance cpeInstance;
 
-    private LocalDateTime startTest;
-    private LocalDateTime endTest;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    @Length(min = 16, max = 16)
+    private String startTest;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    @Length(min = 16, max = 16)
+    private String endTest;
 
     @Enumerated(EnumType.STRING)
     private TestStatus status;
