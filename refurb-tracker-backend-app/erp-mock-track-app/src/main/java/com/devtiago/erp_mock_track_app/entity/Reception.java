@@ -37,6 +37,7 @@ public class Reception extends Operation{
     @Column(name = "pallet_id", nullable = false)
     private String palletId;
     @NotBlank(message = "The field 'sn' is required.")
+    @Column(name = "sn", nullable = false)
     private String sn;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cpe_instance_id", nullable = false)
