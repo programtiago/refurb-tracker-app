@@ -1,0 +1,4 @@
+rootProject.name = 'refurbtracker'
+
+include(':refurb-core')
+include(':refurb-rh')
