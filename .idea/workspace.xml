@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="7435bfe0-1b65-42a3-be9a-c523873ac1e0" name="Changes" comment="Initialization Modular Spring application">
+      <change beforePath="$PROJECT_DIR$/refurbtracker/src/main/java/com/devtiago/refurb_tracker_app/refurbtracker/entity/InternalEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/refurbtracker/src/main/java/com/devtiago/refurb_tracker_app/refurbtracker/entity/InternalEmployee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/refurbtracker/src/main/java/com/devtiago/refurb_tracker_app/refurbtracker/entity/TemporaryEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/refurbtracker/src/main/java/com/devtiago/refurb_tracker_app/refurbtracker/entity/TemporaryEmployee.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$/refurbtracker">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="refurbtracker" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/refurbtracker" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;programtiago&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/programtiago/refurb-tracker-app.git&quot;,
+    &quot;accountId&quot;: &quot;48f71c1d-5f0f-4e22-ac4c-c6fb26cfc355&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="33vjI1X673fBDZbtQZuQfQKPL4k" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;development&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/dev/refurb-tracker-app&quot;
+  }
+}</component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7435bfe0-1b65-42a3-be9a-c523873ac1e0" name="Changes" comment="" />
+      <created>1760204356410</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1760204356410</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Initialization Modular Spring application">
+      <option name="closed" value="true" />
+      <created>1760204442116</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1760204442116</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initialization Modular Spring application" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initialization Modular Spring application" />
+  </component>
+</project>
