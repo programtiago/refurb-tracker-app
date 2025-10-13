@@ -56,4 +56,16 @@ public abstract class Employee {
     @Column(name = "active", nullable = false)
     @Builder.Default
     private boolean active = true;
+    @NotBlank(message = "The field 'display_name' is mandatory.")
+    @Column(name = "display_name", nullable = false)
+    private String displayName;
+
+    @PrePersist
+    public void onCreation(){
+        if (displayName == null || displayName.isBlank()){
+            setDisplayName();
+        }
+    }
+
+    public abstract void setDisplayName();
 }

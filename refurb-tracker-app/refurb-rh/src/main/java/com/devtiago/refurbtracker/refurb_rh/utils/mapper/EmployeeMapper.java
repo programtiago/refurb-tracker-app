@@ -27,7 +27,8 @@ public class EmployeeMapper {
                 employee.getCreatedAt(),
                 employee.getStatus(),
                 employee.getWorkerNo(),
-                employee.getEmployeeType()
+                employee.getEmployeeType(),
+                employee.getDisplayName()
         );
     }
 
@@ -48,7 +49,8 @@ public class EmployeeMapper {
                 employee.getContractStartDate(),
                 employee.getContractEndDate(),
                 employee.getHiringEmploymentCompany(),
-                employee.getEmployeeType()
+                employee.getEmployeeType(),
+                employee.getDisplayName()
         );
     }
 

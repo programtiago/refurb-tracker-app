@@ -20,5 +20,6 @@ public record TemporaryEmployeeDto(
     LocalDate contractStartDate,
     LocalDate contractEndDate,
     String hiringEmploymentCompany,
-    EmployeeType employeeType
+    EmployeeType employeeType,
+    String displayName
 ) { }

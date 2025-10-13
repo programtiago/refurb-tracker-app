@@ -8,5 +8,6 @@ CREATE TABLE TB_EMPLOYEE (
     admission_date DATE NOT NULL,
     created_at TIMESTAMP NOT NULL,
     status VARCHAR(50) NOT NULL,
-    active BOOLEAN NOT NULL DEFAULT TRUE
+    active BOOLEAN NOT NULL DEFAULT TRUE,
+    display_name VARCHAR(40) NOT NULL
 );

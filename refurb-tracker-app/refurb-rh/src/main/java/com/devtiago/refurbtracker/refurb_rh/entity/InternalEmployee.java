@@ -26,4 +26,9 @@ public class InternalEmployee extends Employee {
     protected void onCreate(){
         this.employeeType = EmployeeType.INTERNAL;
     }
+
+    @Override
+    public void setDisplayName() {
+        setDisplayName("[" + this.workerNo + "]-" + this.getFirstName() + " " + this.getLastName());
+    }
 }

@@ -32,5 +32,6 @@ public record InternalEmployeeDto(
     @NotBlank(message = "The field 'workerNo' is mandatory.")
     String workerNo,
     @NotNull(message = "The field 'employeeType' is mandatory.")
-    EmployeeType employeeType
+    EmployeeType employeeType,
+    String displayName
 ) { }
