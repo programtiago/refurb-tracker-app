@@ -1,6 +1,7 @@
 package com.devtiago.refurbtracker.refurb_rh.service;
 
-import com.devtiago.refurbtracker.refurb_core.entity.dto.MenuItem;
+import com.devtiago.refurbtracker.refurb_core.entity.ChildrenMenuItem;
+import com.devtiago.refurbtracker.refurb_core.entity.MenuItem;
 import com.devtiago.refurbtracker.refurb_core.service.MenuService;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +16,14 @@ public class RhMenuService implements MenuService {
         List<MenuItem> menu = new ArrayList<>();
 
         if (department.equalsIgnoreCase("HR")){
-            //if (role.equalsIgnoreCase("MANAGER")){}
-            menu.add(new MenuItem("Employees", "/employees", "users", ""));
+            List<ChildrenMenuItem> employeesSubMenu = List.of(
+                    new ChildrenMenuItem("List Employees", "/employees/list", "list", "View All Employees"),
+                    new ChildrenMenuItem("Add Employee", "/employees/add", "plus", "Add a new employee"),
+                    new ChildrenMenuItem("Update Employee", "/employees/update", "edit", "Update employee")
+            );
+
+            // Top-level Employees menu
+            menu.add(new MenuItem("Employees", "/employees", "users", employeesSubMenu));
         }
 
         return menu;

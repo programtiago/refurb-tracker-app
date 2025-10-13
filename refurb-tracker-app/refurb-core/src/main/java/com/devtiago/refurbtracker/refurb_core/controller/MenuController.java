@@ -1,6 +1,6 @@
 package com.devtiago.refurbtracker.refurb_core.controller;
 
-import com.devtiago.refurbtracker.refurb_core.entity.dto.MenuItem;
+import com.devtiago.refurbtracker.refurb_core.entity.MenuItem;
 import com.devtiago.refurbtracker.refurb_core.service.MenuService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +17,8 @@ import java.util.List;
 public class MenuController {
 
     private final MenuService menuService;
-
     @GetMapping
-    public ResponseEntity<List<MenuItem>> getMenu(
-            @RequestParam String department
-    ){
+    public ResponseEntity<List<MenuItem>> getMenu(@RequestParam String department){
         return ResponseEntity.ok(menuService.getMenuFor(department));
     }
 }
