@@ -63,7 +63,6 @@ public class EmployeeController {
     @PutMapping("/temporary/{id}")
     public ResponseEntity<Void> updateTemporaryEmployee(@PathVariable Long id, @RequestBody TemporaryEmployeeDto employee){
         employeeService.updateEmployee(id, employee);
-
         return ResponseEntity.noContent().build();
     }
 }
