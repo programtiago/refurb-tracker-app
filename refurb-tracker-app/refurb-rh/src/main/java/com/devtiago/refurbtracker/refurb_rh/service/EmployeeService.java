@@ -16,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -97,25 +96,31 @@ public class EmployeeService {
     }
 
     public void updateEmployee(Long id, TemporaryEmployeeDto employee) {
-        TemporaryEmployee employeeToUpdate = employeeMapper.toTemporaryEmployeeEntity(findTemporaryEmployeeById(id));
+        TemporaryEmployee existingEmployee = employeeMapper.toTemporaryEmployeeEntity(findTemporaryEmployeeById(id));
+        TemporaryEmployee updated = employeeMapper.toTemporaryEmployeeEntity(employee);
 
-        employeeToUpdate.setFirstName(employee.firstName());
-        employeeToUpdate.setLastName(employee.lastName());
-        employeeToUpdate.setBirthdayDate(employee.birthdayDate());
-        employeeToUpdate.setDepartment(employee.department());
-        employeeToUpdate.setPosition(employee.position());
-        employeeToUpdate.setStatus(employee.status());
+        updateCommonFields(existingEmployee, updated);
 
-        if (employeeToUpdate.getStatus() != StatusEmployee.AVAILABLE){
-            employeeToUpdate.setActive(false);
+        if (updated.getStatus() != StatusEmployee.AVAILABLE){
+            updated.setActive(false);
         }
 
-        employeeToUpdate.setEloCode(employee.eloCode());
-        employeeToUpdate.setContractStartDate(employee.contractStartDate());
-        employeeToUpdate.setContractEndDate(employee.contractEndDate());
-        employeeToUpdate.setHiringEmploymentCompany(employee.hiringEmploymentCompany());
+        updated.setEloCode(employee.eloCode());
+        updated.setContractStartDate(employee.contractStartDate());
+        updated.setContractEndDate(employee.contractEndDate());
+        updated.setHiringEmploymentCompany(employee.hiringEmploymentCompany());
 
-        temporaryEmployeeRepository.save(employeeToUpdate);
+        temporaryEmployeeRepository.save(updated);
+    }
 
+    //Método útil para campos em comum
+    private void updateCommonFields(Employee existing, Employee updated) {
+        existing.setFirstName(updated.getFirstName());
+        existing.setLastName(updated.getLastName());
+        existing.setBirthdayDate(updated.getBirthdayDate());
+        existing.setDepartment(updated.getDepartment());
+        existing.setPosition(updated.getPosition());
+        existing.setStatus(updated.getStatus());
+        existing.setActive(updated.getStatus() == StatusEmployee.AVAILABLE);
     }
 }
