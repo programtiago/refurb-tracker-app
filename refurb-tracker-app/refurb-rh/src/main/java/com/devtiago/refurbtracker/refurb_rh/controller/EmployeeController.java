@@ -1,0 +1,47 @@
+package com.devtiago.refurbtracker.refurb_rh.controller;
+
+import com.devtiago.refurbtracker.refurb_core.entity.Employee;
+import com.devtiago.refurbtracker.refurb_rh.entity.TemporaryEmployee;
+import com.devtiago.refurbtracker.refurb_rh.entity.dto.InternalEmployeeDto;
+import com.devtiago.refurbtracker.refurb_rh.entity.dto.TemporaryEmployeeDto;
+import com.devtiago.refurbtracker.refurb_rh.service.EmployeeService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/employees")
+@RequiredArgsConstructor
+public class EmployeeController {
+
+    private final EmployeeService employeeService;
+
+    @GetMapping
+    public List<Employee> findAll(){
+        return employeeService.findAll();
+    }
+
+    @GetMapping("/interns")
+    public List<InternalEmployeeDto> findAllInternEmployees(){
+        return employeeService.findAllInternEmployees();
+    }
+
+    @GetMapping("/temporaries")
+    public List<TemporaryEmployeeDto> findAllTemporaryEmployees(){
+        return employeeService.findAllTemporaryEmployees();
+    }
+
+    @PostMapping("/add/intern")
+    public InternalEmployeeDto create(@RequestBody InternalEmployeeDto employee){
+        return employeeService.createNewEmployee(employee);
+    }
+
+    @PostMapping("/add/temporary")
+    public TemporaryEmployeeDto create(@RequestBody TemporaryEmployee employee){
+        return employeeService.createNewEmployee(employee);
+    }
+
+
+
+}
