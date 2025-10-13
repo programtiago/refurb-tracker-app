@@ -1,6 +1,7 @@
 package com.devtiago.refurbtracker.refurb_rh.service;
 
 import com.devtiago.refurbtracker.refurb_core.entity.Employee;
+import com.devtiago.refurbtracker.refurb_core.enums.StatusEmployee;
 import com.devtiago.refurbtracker.refurb_core.repository.EmployeeRepository;
 import com.devtiago.refurbtracker.refurb_rh.entity.InternalEmployee;
 import com.devtiago.refurbtracker.refurb_rh.entity.TemporaryEmployee;
@@ -75,5 +76,46 @@ public class EmployeeService {
                 .orElseThrow(() -> new EmployeeNotFoundException(id));
 
         return employeeMapper.toTemporaryEmployeeDto(employee);
+    }
+
+    public void updateEmployee(Long id, InternalEmployeeDto employee){
+        InternalEmployee employeeToUpdate = employeeMapper.toInternalEmployeeEntity(findInternalEmployeeById(id));
+
+        employeeToUpdate.setFirstName(employee.firstName());
+        employeeToUpdate.setLastName(employee.lastName());
+        employeeToUpdate.setBirthdayDate(employee.birthdayDate());
+        employeeToUpdate.setDepartment(employee.department());
+        employeeToUpdate.setPosition(employee.position());
+        employeeToUpdate.setStatus(employee.status());
+
+        if (employeeToUpdate.getStatus() != StatusEmployee.AVAILABLE){
+            employeeToUpdate.setActive(false);
+        }
+        employeeToUpdate.setWorkerNo(employee.workerNo());
+
+        internalEmployeeRepository.save(employeeToUpdate);
+    }
+
+    public void updateEmployee(Long id, TemporaryEmployeeDto employee) {
+        TemporaryEmployee employeeToUpdate = employeeMapper.toTemporaryEmployeeEntity(findTemporaryEmployeeById(id));
+
+        employeeToUpdate.setFirstName(employee.firstName());
+        employeeToUpdate.setLastName(employee.lastName());
+        employeeToUpdate.setBirthdayDate(employee.birthdayDate());
+        employeeToUpdate.setDepartment(employee.department());
+        employeeToUpdate.setPosition(employee.position());
+        employeeToUpdate.setStatus(employee.status());
+
+        if (employeeToUpdate.getStatus() != StatusEmployee.AVAILABLE){
+            employeeToUpdate.setActive(false);
+        }
+
+        employeeToUpdate.setEloCode(employee.eloCode());
+        employeeToUpdate.setContractStartDate(employee.contractStartDate());
+        employeeToUpdate.setContractEndDate(employee.contractEndDate());
+        employeeToUpdate.setHiringEmploymentCompany(employee.hiringEmploymentCompany());
+
+        temporaryEmployeeRepository.save(employeeToUpdate);
+
     }
 }

@@ -6,6 +6,7 @@ import com.devtiago.refurbtracker.refurb_rh.entity.dto.InternalEmployeeDto;
 import com.devtiago.refurbtracker.refurb_rh.entity.dto.TemporaryEmployeeDto;
 import com.devtiago.refurbtracker.refurb_rh.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -50,5 +51,19 @@ public class EmployeeController {
     @GetMapping("/internal/{id}")
     public TemporaryEmployeeDto findTemporaryEmployeeById(@PathVariable Long id){
         return employeeService.findTemporaryEmployeeById(id);
+    }
+
+    @PutMapping("/internal/{id}")
+    public ResponseEntity<Void> updateInternalEmployee(@PathVariable Long id, @RequestBody InternalEmployeeDto employee){
+        employeeService.updateEmployee(id, employee);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/temporary/{id}")
+    public ResponseEntity<Void> updateTemporaryEmployee(@PathVariable Long id, @RequestBody TemporaryEmployeeDto employee){
+        employeeService.updateEmployee(id, employee);
+
+        return ResponseEntity.noContent().build();
     }
 }

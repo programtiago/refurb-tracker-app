@@ -41,7 +41,7 @@ public abstract class Employee {
     private String department;
     @NotBlank(message = "The field 'function' is mandatory.")
     @Column(name = "function", nullable = false, length = 50)
-    @Size(min = 10, max = 50, message = "The field 'function' must be between 10 and 50 characters")
+    @Size(min = 5, max = 50, message = "The field 'function' must be between 10 and 50 characters")
     private String position;
     @NotNull(message = "The field 'admission_date' is mandatory.")
     @Column(name = "admission_date", nullable = false)
