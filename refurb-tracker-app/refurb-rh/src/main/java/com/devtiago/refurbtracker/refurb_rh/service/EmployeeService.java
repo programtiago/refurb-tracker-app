@@ -7,6 +7,7 @@ import com.devtiago.refurbtracker.refurb_rh.entity.TemporaryEmployee;
 import com.devtiago.refurbtracker.refurb_rh.entity.dto.InternalEmployeeDto;
 import com.devtiago.refurbtracker.refurb_rh.entity.dto.TemporaryEmployeeDto;
 import com.devtiago.refurbtracker.refurb_rh.exceptions.DuplicateIdentifierException;
+import com.devtiago.refurbtracker.refurb_rh.exceptions.EmployeeNotFoundException;
 import com.devtiago.refurbtracker.refurb_rh.repository.InternalEmployeeRepository;
 import com.devtiago.refurbtracker.refurb_rh.repository.TemporaryEmployeeRepository;
 import com.devtiago.refurbtracker.refurb_rh.utils.mapper.EmployeeMapper;
@@ -14,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -59,5 +61,19 @@ public class EmployeeService {
         TemporaryEmployee savedTemporaryEmployee = temporaryEmployeeRepository.save(employeeMapper.toTemporaryEmployeeEntity(temporaryEmployeeToSave));
 
         return employeeMapper.onCreate(savedTemporaryEmployee);
+    }
+
+    public InternalEmployeeDto findInternalEmployeeById(Long id){
+        InternalEmployee employee = internalEmployeeRepository.findById(id)
+                .orElseThrow(() -> new EmployeeNotFoundException(id));
+
+        return employeeMapper.toInternalEmployeeDto(employee);
+    }
+
+    public TemporaryEmployeeDto findTemporaryEmployeeById(Long id){
+        TemporaryEmployee employee = temporaryEmployeeRepository.findById(id)
+                .orElseThrow(() -> new EmployeeNotFoundException(id));
+
+        return employeeMapper.toTemporaryEmployeeDto(employee);
     }
 }

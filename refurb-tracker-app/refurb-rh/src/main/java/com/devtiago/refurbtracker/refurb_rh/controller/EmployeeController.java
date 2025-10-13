@@ -42,6 +42,13 @@ public class EmployeeController {
         return employeeService.createNewEmployee(employee);
     }
 
+    @GetMapping("/temporary/{id}")
+    public InternalEmployeeDto findInternalEmployeeById(@PathVariable Long id){
+        return employeeService.findInternalEmployeeById(id);
+    }
 
-
+    @GetMapping("/internal/{id}")
+    public TemporaryEmployeeDto findTemporaryEmployeeById(@PathVariable Long id){
+        return employeeService.findTemporaryEmployeeById(id);
+    }
 }

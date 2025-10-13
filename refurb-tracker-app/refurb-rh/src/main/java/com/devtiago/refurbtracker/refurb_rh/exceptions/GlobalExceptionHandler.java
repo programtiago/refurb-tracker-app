@@ -17,7 +17,23 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleEmployeeException(EmployeeException ex, HttpServletRequest req){
         HttpStatus status = HttpStatus.BAD_REQUEST;
 
-        com.devtiago.refurbtracker.refurb_core.exceptions.ErrorResponse error = new com.devtiago.refurbtracker.refurb_core.exceptions.ErrorResponse(
+        ErrorResponse error = new ErrorResponse(
+                LocalDateTime.now(),
+                status.value(),
+                status.getReasonPhrase(),
+                ex.getMessage(),
+                req.getRequestURI(),
+                ex.getErrorCode()
+        );
+
+        return ResponseEntity.status(status).body(error);
+    }
+
+    @ExceptionHandler(EmployeeNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleEmployeeNotFoundException(EmployeeNotFoundException ex, HttpServletRequest req){
+        HttpStatus status = HttpStatus.NOT_FOUND;
+
+        ErrorResponse error = new ErrorResponse(
                 LocalDateTime.now(),
                 status.value(),
                 status.getReasonPhrase(),
