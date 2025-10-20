@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { EmployeeFormComponent } from './components/employee-form/employee-form.component';
 import { EmployeesListComponent } from './components/employees-list/employees-list.component';
 import { AppMaterialModule } from '../core/shared/app-material/app-material.module';
+import { RhRoutingModule } from './rh-routing.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { AppMaterialModule } from '../core/shared/app-material/app-material.modu
   ],
   imports: [
     CommonModule,
-    AppMaterialModule
+    AppMaterialModule,
+    RhRoutingModule
   ]
 })
 export class RhModule { }

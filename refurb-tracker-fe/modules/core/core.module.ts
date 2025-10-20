@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { AppMaterialModule } from './shared/app-material/app-material.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -9,7 +10,8 @@ import { AppMaterialModule } from './shared/app-material/app-material.module';
   ],
   imports: [
     CommonModule,
-    AppMaterialModule
+    AppMaterialModule,
+    RouterModule
   ],
   exports: [
     HeaderComponent

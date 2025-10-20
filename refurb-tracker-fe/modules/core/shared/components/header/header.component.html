@@ -1,5 +1,17 @@
 <mat-toolbar>
     <mat-toolbar-row>
         Refurb Tracker App
-    </mat-toolbar-row>
+    
+    <button matButton [matMenuTriggerFor]="rhMenu">
+        HR Menu    
+    </button> 
+    
+    <mat-menu #rhMenu="matMenu">
+        <button [routerLink]="submenuItem.path" mat-menu-item *ngFor="let submenuItem of subMenuItems">
+            <mat-icon>{{ submenuItem.icon }}</mat-icon>
+            <span>{{ submenuItem.title }}</span>
+        </button>
+    </mat-menu>
+
+    </mat-toolbar-row>  
 </mat-toolbar>
