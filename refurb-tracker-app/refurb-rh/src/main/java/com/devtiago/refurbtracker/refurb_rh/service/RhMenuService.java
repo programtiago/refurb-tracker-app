@@ -17,9 +17,9 @@ public class RhMenuService implements MenuService {
 
         if (department.equalsIgnoreCase("HR")){
             List<ChildrenMenuItem> employeesSubMenu = List.of(
-                    new ChildrenMenuItem("List Employees", "/employees/list", "list", "View All Employees"),
-                    new ChildrenMenuItem("Add Employee", "/employees/add", "plus", "Add a new employee"),
-                    new ChildrenMenuItem("Update Employee", "/employees/update", "edit", "Update employee")
+                    new ChildrenMenuItem("List Employees", "/employees", "view_list", "View All Employees"),
+                    new ChildrenMenuItem("Add Employee", "/employees/new", "add_circle", "Add a new employee"),
+                    new ChildrenMenuItem("Update Employee", "/employees/edit/:id", "edit", "Update employee")
             );
 
             // Top-level Employees menu
