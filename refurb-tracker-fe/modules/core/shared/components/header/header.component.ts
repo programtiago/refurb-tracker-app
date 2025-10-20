@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RhService } from '../../../../rh/services/rh.service';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  constructor(private rhService: RhService){
+    this.rhService.getMenuItemsList().subscribe((res) => {
+      console.log(res)
+    })
+  }
 }

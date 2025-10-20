@@ -1,0 +1,11 @@
+{
+    "/api/rh": {
+        "target": "http://localhost:8081/refurb-tracker/rh/api/v1/",
+        "secure": false,
+        "changeOrigin": true,
+        "logLevel": "debug",
+        "pathRewrite": {
+            "^/api/rh": ""
+        }
+    }
+}
