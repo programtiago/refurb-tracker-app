@@ -1,0 +1,81 @@
+<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+  <mat-card>
+    <mat-card-content>
+      <div class="form-field">
+        <mat-form-field appearance="fill">
+          <mat-label>Employee Type</mat-label>
+          <mat-select formControlName="employeeType" required>
+            <mat-option *ngFor="let type of employeeTypes" [value]="type.value">
+              {{ type.viewValue }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+    <!-- Base fields -->
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Department</mat-label>
+      <input matInput formControlName="department" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Position</mat-label>
+      <input matInput formControlName="position" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Birthday</mat-label>
+      <input matInput formControlName="birthdayDate" type="date" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Admission Date</mat-label>
+      <input matInput formControlName="admissionDate" type="date" />
+    </mat-form-field>
+
+    <!-- Conditional Fields -->
+    <div *ngIf="employeeForm.get('employeeType')?.value === 'INTERNAL'">
+      <mat-form-field appearance="outline" class="w-full">
+        <mat-label>Worker Number</mat-label>
+        <input matInput formControlName="workerNo" />
+      </mat-form-field>
+    </div>
+
+  <div *ngIf="employeeForm.get('employeeType')?.value === 'TEMPORARY'">
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>ELO Code</mat-label>
+      <input matInput formControlName="eloCode" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Contract Start Date</mat-label>
+      <input matInput formControlName="contractStartDate" type="date" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Contract End Date</mat-label>
+      <input matInput formControlName="contractEndDate" type="date" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Hiring Company</mat-label>
+      <input matInput formControlName="hiringEmploymentCompany" />
+    </mat-form-field>
+  </div>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!employeeForm.valid">
+        Save Employee
+    </button>
+    </mat-card-content>
+  </mat-card>
+</form>

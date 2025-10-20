@@ -10,4 +10,5 @@ export interface Employee {
     status: string;
     active: boolean;
     displayName: string;
+    employeeType: 'INTERNAL' | 'TEMPORARY';
 }

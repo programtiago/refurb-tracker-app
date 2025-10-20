@@ -5,5 +5,4 @@ export interface TemporaryEmployee extends Employee {
     contractStartDate: Date;
     contractEndDate: Date;
     hiringEmploymentCompany: string;
-    employeeType: 'TEMPORARY';
 }
