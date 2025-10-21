@@ -8,6 +8,9 @@ import { AppMaterialModule } from '../../modules/core/shared/app-material/app-ma
 import { CoreModule } from '../../modules/core/core.module';
 import { provideHttpClient } from '@angular/common/http';
 
+import { provideNativeDateAdapter, MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -16,11 +19,14 @@ import { provideHttpClient } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     AppMaterialModule,
-    CoreModule
+    CoreModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [
     provideAnimationsAsync(),
-    provideHttpClient()
+    provideHttpClient(),
+    provideNativeDateAdapter()
   ],
   bootstrap: [AppComponent]
 })

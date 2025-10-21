@@ -1,7 +1,4 @@
 .page-wrapper {
-    margin: 20px;
-    padding: 20px;
-    height: 80vh;
-    //border-radius: 8px;
-    //background-color: black;
+    height: calc(100vh - 40px);
+    box-sizing: border-box;
 }

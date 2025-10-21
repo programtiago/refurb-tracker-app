@@ -17,19 +17,23 @@ export class EmployeeFormComponent implements OnInit {
   constructor(private fb: FormBuilder){}
 
   ngOnInit(): void {
-    
+    this.buildBaseForm();
+
+    this.employeeForm.get('employeeType')?.valueChanges.subscribe(type => {
+      this.updateFormForType(type);
+    })
   }
 
   buildBaseForm(): void {
     this.employeeForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(3)]],
-      lastName: ['', , Validators.required],
+      lastName: ['', Validators.required],
       birthdayDate: [''],
       department: ['', Validators.required],
       position: ['', Validators.required],
       admissionDate: ['', Validators.required],
       active: [true],
-      employeeType: [null, Validators.required]
+      employeeType: ['', Validators.required]
     });
   }
 

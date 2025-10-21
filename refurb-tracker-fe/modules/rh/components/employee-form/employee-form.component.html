@@ -1,81 +1,102 @@
-<form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="employeeForm">
   <mat-card>
     <mat-card-content>
-      <div class="form-field">
-        <mat-form-field appearance="fill">
-          <mat-label>Employee Type</mat-label>
-          <mat-select formControlName="employeeType" required>
-            <mat-option *ngFor="let type of employeeTypes" [value]="type.value">
-              {{ type.viewValue }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-      </div>
+        <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Employee Type</mat-label>
+            <mat-select formControlName="employeeType" required>
+              <mat-option *ngFor="let type of employeeTypes" [value]="type.value">
+                {{ type.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        <div class="form-grid">
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" />
+            <mat-icon matPrefix>person</mat-icon>
+          </mat-form-field>
 
-    <!-- Base fields -->
-    <mat-form-field appearance="outline" class="w-full">
-      <mat-label>First Name</mat-label>
-      <input matInput formControlName="firstName" />
-    </mat-form-field>
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" />
+            <mat-icon matPrefix>person</mat-icon>
+          </mat-form-field>
 
-    <mat-form-field appearance="outline" class="w-full">
-      <mat-label>Last Name</mat-label>
-      <input matInput formControlName="lastName" />
-    </mat-form-field>
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Birthday Date</mat-label>
+            <input matInput [matDatepicker]="birthdayDatePicker">
+            <mat-datepicker-toggle matIconPrefix [for]="birthdayDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #birthdayDatePicker></mat-datepicker>
+          </mat-form-field>
 
-    <mat-form-field appearance="outline" class="w-full">
-      <mat-label>Department</mat-label>
-      <input matInput formControlName="department" />
-    </mat-form-field>
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Department</mat-label>
+            <input matInput formControlName="department" />
+            <mat-icon matPrefix>business</mat-icon>
+          </mat-form-field>
 
-    <mat-form-field appearance="outline" class="w-full">
-      <mat-label>Position</mat-label>
-      <input matInput formControlName="position" />
-    </mat-form-field>
+          <mat-form-field appearance="fill" class="w-full">
+            <mat-label>Position</mat-label>
+            <input matInput formControlName="position" />
+            <mat-icon matPrefix>work</mat-icon>
+          </mat-form-field>
 
-    <mat-form-field appearance="outline" class="w-full">
-      <mat-label>Birthday</mat-label>
-      <input matInput formControlName="birthdayDate" type="date" />
-    </mat-form-field>
+          <mat-form-field class="w-full">
+            <mat-label>Admission Date</mat-label>
+            <input matInput [matDatepicker]="admissionDatePicker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconPrefix [for]="admissionDatePicker"></mat-datepicker-toggle>
+            <mat-datepicker #admissionDatePicker></mat-datepicker>
+          </mat-form-field>
+          
+          <div *ngIf="employeeForm.get('workerNo')">
+            <mat-form-field appearance="fill" class="w-full">
+              <mat-label>Worker Number</mat-label>
+              <input matInput formControlName="workerNo" />
+              <mat-icon matPrefix>badge</mat-icon>
+            </mat-form-field>
+          </div>
 
-    <mat-form-field appearance="outline" class="w-full">
-      <mat-label>Admission Date</mat-label>
-      <input matInput formControlName="admissionDate" type="date" />
-    </mat-form-field>
+          <div *ngIf="employeeForm.get('eloCode')">
+            <mat-form-field appearance="fill" class="w-full">
+              <mat-label>ELO Code</mat-label>
+              <input matInput formControlName="eloCode" />
+              <mat-icon matPrefix>badge</mat-icon> 
+            </mat-form-field>
+          </div>  
+          
+          <div *ngIf="employeeForm.get('contractStartDate')">
+            <mat-form-field class="w-full">
+              <mat-label>Contract Start Date</mat-label>
+              <input matInput [matDatepicker]="contractStartDatePicker">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="contractStartDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #contractStartDatePicker></mat-datepicker>
+            </mat-form-field>
+          </div>  
+          
+          <div *ngIf="employeeForm.get('contractEndDate')">
+            <mat-form-field class="w-full">
+              <mat-label>Contract End Date</mat-label>
+              <input matInput [matDatepicker]="contractEndDatePicker">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="contractEndDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker #contractEndDatePicker></mat-datepicker>
+            </mat-form-field>
+          </div>  
 
-    <!-- Conditional Fields -->
-    <div *ngIf="employeeForm.get('employeeType')?.value === 'INTERNAL'">
-      <mat-form-field appearance="outline" class="w-full">
-        <mat-label>Worker Number</mat-label>
-        <input matInput formControlName="workerNo" />
-      </mat-form-field>
-    </div>
+          <div *ngIf="employeeForm.get('hiringEmploymentCompany')">
+            <mat-form-field appearance="fill" class="w-full">
+              <mat-label>Hiring Company</mat-label>
+              <input matInput formControlName="hiringEmploymentCompany" />
+              <mat-icon matPrefix>domain</mat-icon> 
+            </mat-form-field>
+          </div>
+        </div>
 
-  <div *ngIf="employeeForm.get('employeeType')?.value === 'TEMPORARY'">
-    <mat-form-field appearance="outline" class="w-full">
-      <mat-label>ELO Code</mat-label>
-      <input matInput formControlName="eloCode" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="w-full">
-      <mat-label>Contract Start Date</mat-label>
-      <input matInput formControlName="contractStartDate" type="date" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="w-full">
-      <mat-label>Contract End Date</mat-label>
-      <input matInput formControlName="contractEndDate" type="date" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="w-full">
-      <mat-label>Hiring Company</mat-label>
-      <input matInput formControlName="hiringEmploymentCompany" />
-    </mat-form-field>
-  </div>
-
-    <button mat-raised-button color="primary" type="submit" [disabled]="!employeeForm.valid">
-        Save Employee
-    </button>
+      <button class="btn-save" mat-raised-button color="primary" [disabled]="!employeeForm.valid">
+          Save Employee
+      </button>    
     </mat-card-content>
   </mat-card>
 </form>

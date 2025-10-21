@@ -23,8 +23,4 @@ export class HeaderComponent {
       console.log("Sub Menu Items: ", this.subMenuItems);
     })
   }
-
-  onClick(){
-    console.log("clicou")
-  }
 }

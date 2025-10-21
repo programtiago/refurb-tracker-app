@@ -5,6 +5,8 @@ import { EmployeesListComponent } from './components/employees-list/employees-li
 import { AppMaterialModule } from '../core/shared/app-material/app-material.module';
 import { RhRoutingModule } from './rh-routing.module';
 
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 @NgModule({
   declarations: [
     EmployeeFormComponent,
@@ -13,7 +15,8 @@ import { RhRoutingModule } from './rh-routing.module';
   imports: [
     CommonModule,
     AppMaterialModule,
-    RhRoutingModule
+    RhRoutingModule,
+    MatDatepickerModule
   ]
 })
 export class RhModule { }
