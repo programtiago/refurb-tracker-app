@@ -14,6 +14,14 @@ export class EmployeeFormComponent implements OnInit {
     { value: 'TEMPORARY', viewValue: 'Temporary' }
   ];
 
+  departments = [
+    { value: 'IT', viewValue: 'Information Technology'},
+    { value: 'HR', viewValue: 'Human Resources'},
+    { value: 'ADMIN', viewValue: 'Administration'},
+    { value: 'LOG', viewValue: 'Logistic'},
+    { value: 'PROD', viewValue: 'Production'}
+  ]
+
   constructor(private fb: FormBuilder){}
 
   ngOnInit(): void {
@@ -29,6 +37,7 @@ export class EmployeeFormComponent implements OnInit {
       firstName: ['', [Validators.required, Validators.minLength(3)]],
       lastName: ['', Validators.required],
       birthdayDate: [''],
+      phoneNumber: ['', Validators.required],
       department: ['', Validators.required],
       position: ['', Validators.required],
       admissionDate: ['', Validators.required],

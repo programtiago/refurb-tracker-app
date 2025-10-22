@@ -10,6 +10,7 @@
             </mat-select>
           </mat-form-field>
         <div class="form-grid">
+
           <mat-form-field appearance="fill" class="w-full">
             <mat-label>First Name</mat-label>
             <input matInput formControlName="firstName" />
@@ -29,10 +30,20 @@
             <mat-datepicker #birthdayDatePicker></mat-datepicker>
           </mat-form-field>
 
+          <mat-form-field appearence="fill" class="w-full">
+            <mat-label>Phone number</mat-label>
+            <input matInput formControlName="phoneNumber" />
+            <mat-icon matPrefix>phone</mat-icon>
+          </mat-form-field>
+
           <mat-form-field appearance="fill" class="w-full">
             <mat-label>Department</mat-label>
-            <input matInput formControlName="department" />
             <mat-icon matPrefix>business</mat-icon>
+            <mat-select formControlName="department" required>
+              <mat-option *ngFor="let department of departments" [value]="department.value">
+                {{ department.viewValue }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
 
           <mat-form-field appearance="fill" class="w-full">
@@ -43,7 +54,7 @@
 
           <mat-form-field class="w-full">
             <mat-label>Admission Date</mat-label>
-            <input matInput [matDatepicker]="admissionDatePicker">
+            <input matInput [matDatepicker]="admissionDatePicker" formControlName="admissionDate">
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconPrefix [for]="admissionDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #admissionDatePicker></mat-datepicker>
@@ -68,9 +79,9 @@
           <div *ngIf="employeeForm.get('contractStartDate')">
             <mat-form-field class="w-full">
               <mat-label>Contract Start Date</mat-label>
-              <input matInput [matDatepicker]="contractStartDatePicker">
+              <input matInput [matDatepicker]="contractStartDatePicker" formControlName="contractStartDate">
               <mat-hint>MM/DD/YYYY</mat-hint>
-              <mat-datepicker-toggle matIconSuffix [for]="contractStartDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker-toggle matIconPrefix [for]="contractStartDatePicker"></mat-datepicker-toggle>
               <mat-datepicker #contractStartDatePicker></mat-datepicker>
             </mat-form-field>
           </div>  
@@ -78,9 +89,9 @@
           <div *ngIf="employeeForm.get('contractEndDate')">
             <mat-form-field class="w-full">
               <mat-label>Contract End Date</mat-label>
-              <input matInput [matDatepicker]="contractEndDatePicker">
+              <input matInput [matDatepicker]="contractEndDatePicker" formControlName="contractEndDate">
               <mat-hint>MM/DD/YYYY</mat-hint>
-              <mat-datepicker-toggle matIconSuffix [for]="contractEndDatePicker"></mat-datepicker-toggle>
+              <mat-datepicker-toggle matIconPrefix [for]="contractEndDatePicker"></mat-datepicker-toggle>
               <mat-datepicker #contractEndDatePicker></mat-datepicker>
             </mat-form-field>
           </div>  
@@ -93,10 +104,11 @@
             </mat-form-field>
           </div>
         </div>
-
-      <button class="btn-save" mat-raised-button color="primary" [disabled]="!employeeForm.valid">
-          Save Employee
-      </button>    
     </mat-card-content>
+    <mat-card-actions align="end">
+      <button class="btn-save" mat-raised-button color="primary" [disabled]="!employeeForm.valid">
+        Save Employee
+      </button>    
+    </mat-card-actions>
   </mat-card>
 </form>

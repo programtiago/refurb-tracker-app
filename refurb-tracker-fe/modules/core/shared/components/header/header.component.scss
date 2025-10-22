@@ -1,8 +1,18 @@
-.mat-toolbar {
+mat-toolbar {
     background-color: black;
     color: white;
+    height: 50px;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+mat-toolbar-row {
+    height: 50px;
+    display: flex;
+    align-items: center;
 }
 
 .spacer {
-    flex: 1 auto;
+    flex: 1 1 auto;
 }
