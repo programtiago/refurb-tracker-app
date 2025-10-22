@@ -59,6 +59,9 @@ public abstract class Employee {
     @NotBlank(message = "The field 'display_name' is mandatory.")
     @Column(name = "display_name", nullable = false)
     private String displayName;
+    @NotBlank(message = "The field 'display_name' is mandatory.")
+    @Column(name = "phone_number", nullable = false, length = 15, unique = true)
+    private String phoneNumber;
 
     @PrePersist
     public void onCreation(){

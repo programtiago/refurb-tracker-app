@@ -9,5 +9,6 @@ CREATE TABLE TB_EMPLOYEE (
     created_at TIMESTAMP NOT NULL,
     status VARCHAR(50) NOT NULL,
     active BOOLEAN NOT NULL DEFAULT TRUE,
-    display_name VARCHAR(40) NOT NULL
+    display_name VARCHAR(40) NOT NULL,
+    phone_number VARCHAR(15) NOT NULL
 );
