@@ -28,7 +28,8 @@ public class EmployeeMapper {
                 employee.getStatus(),
                 employee.getWorkerNo(),
                 employee.getEmployeeType(),
-                employee.getDisplayName()
+                employee.getDisplayName(),
+                employee.getPhoneNumber()
         );
     }
 
@@ -50,7 +51,8 @@ public class EmployeeMapper {
                 employee.getContractEndDate(),
                 employee.getHiringEmploymentCompany(),
                 employee.getEmployeeType(),
-                employee.getDisplayName()
+                employee.getDisplayName(),
+                employee.getPhoneNumber()
         );
     }
 
@@ -99,51 +101,51 @@ public class EmployeeMapper {
         return obj;
     }
 
-    public InternalEmployee onCreate(InternalEmployeeDto employee){
-        InternalEmployee obj = new InternalEmployee();
+    public InternalEmployee toEntityOnCreateInternalEmployee(InternalEmployeeDto employeeDto){
+        InternalEmployee employee = new InternalEmployee();
 
-        if (employee.id() != null){
-            obj.setId(employee.id());
-        }
+        employee.setFirstName(employeeDto.firstName());
+        employee.setLastName(employeeDto.lastName());
+        employee.setBirthdayDate(employeeDto.birthdayDate());
+        employee.setDepartment(employeeDto.department());
+        employee.setPosition(employeeDto.position());
+        employee.setAdmissionDate(employeeDto.admissionDate());
+        employee.setWorkerNo(employeeDto.workerNo());
+        employee.setPhoneNumber(employeeDto.phoneNumber());
 
-        obj.setFirstName(employee.firstName());
-        obj.setLastName(employee.lastName());
-        obj.setBirthdayDate(employee.birthdayDate());
-        obj.setDepartment(employee.department());
-        obj.setPosition(employee.position());
-        obj.setAdmissionDate(employee.admissionDate());
-        obj.setCreatedAt(LocalDateTime.now());
-        obj.setStatus(StatusEmployee.AVAILABLE);
-        obj.setActive(true);
-        obj.setWorkerNo(employee.workerNo());
-        obj.setEmployeeType(EmployeeType.INTERNAL);
+        employee.setCreatedAt(LocalDateTime.now());
+        employee.setEmployeeType(EmployeeType.INTERNAL);
+        employee.setStatus(StatusEmployee.AVAILABLE);
+        employee.setActive(true);
 
-        return obj;
+        employee.setDisplayName("[" + employeeDto.workerNo() + "]-" + employeeDto.firstName() + " " + employeeDto.lastName());
+
+        return employee;
     }
 
-    public TemporaryEmployeeDto onCreate(TemporaryEmployee employee){
-        TemporaryEmployee obj = new TemporaryEmployee();
+    public TemporaryEmployee toEntityOnCreateTemporaryEmployee(TemporaryEmployeeDto employeeDto){
+        TemporaryEmployee employee = new TemporaryEmployee();
 
-        if (employee.getId() != null){
-            obj.setId(employee.getId());
-        }
+        employee.setFirstName(employeeDto.firstName());
+        employee.setLastName(employeeDto.lastName());
+        employee.setBirthdayDate(employeeDto.birthdayDate());
+        employee.setDepartment(employeeDto.department());
+        employee.setPosition(employeeDto.position());
+        employee.setAdmissionDate(employeeDto.admissionDate());
+        employee.setEloCode(employeeDto.eloCode());
+        employee.setContractStartDate(employeeDto.contractStartDate());
+        employee.setContractEndDate(employeeDto.contractEndDate());
+        employee.setHiringEmploymentCompany(employeeDto.hiringEmploymentCompany());
+        employee.setPhoneNumber(employeeDto.phoneNumber());
 
-        obj.setFirstName(employee.getFirstName());
-        obj.setLastName(employee.getLastName());
-        obj.setBirthdayDate(employee.getBirthdayDate());
-        obj.setDepartment(employee.getDepartment());
-        obj.setPosition(employee.getPosition());
-        obj.setAdmissionDate(employee.getAdmissionDate());
-        obj.setCreatedAt(LocalDateTime.now());
-        obj.setStatus(StatusEmployee.AVAILABLE);
-        obj.setActive(true);
-        obj.setEloCode(employee.getEloCode());
-        obj.setEmployeeType(EmployeeType.TEMPORARY);
-        obj.setContractStartDate(employee.getContractStartDate());
-        obj.setContractEndDate(employee.getContractEndDate());
-        obj.setHiringEmploymentCompany(employee.getHiringEmploymentCompany());
+        employee.setCreatedAt(LocalDateTime.now());
+        employee.setEmployeeType(EmployeeType.TEMPORARY);
+        employee.setStatus(StatusEmployee.AVAILABLE);
+        employee.setActive(true);
 
-        return toTemporaryEmployeeDto(obj);
+        employee.setDisplayName("[" + employeeDto.eloCode() + "]-" + employeeDto.firstName() + " " + employeeDto.lastName());
+
+        return employee;
     }
 
     public List<InternalEmployee> toInternalEmployeeList(List<InternalEmployeeDto> employees){

@@ -2,6 +2,8 @@ package com.devtiago.refurbtracker.refurb_rh.entity.dto;
 
 import com.devtiago.refurbtracker.refurb_core.enums.EmployeeType;
 import com.devtiago.refurbtracker.refurb_core.enums.StatusEmployee;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -25,13 +27,16 @@ public record InternalEmployeeDto(
     String position,
     @NotNull(message = "The field 'admissionDate' is mandatory.")
     LocalDate admissionDate,
-    @NotNull(message = "The field 'registryDate' is mandatory.")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
     LocalDateTime registryDate,
-    @NotNull(message = "The field 'status' is mandatory.")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     StatusEmployee status,
     @NotBlank(message = "The field 'workerNo' is mandatory.")
     String workerNo,
-    @NotNull(message = "The field 'employeeType' is mandatory.")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     EmployeeType employeeType,
-    String displayName
+    String displayName,
+    @NotBlank(message = "The field 'phone_number' is mandatory.")
+    String phoneNumber
 ) { }

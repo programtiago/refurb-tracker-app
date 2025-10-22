@@ -5,7 +5,9 @@ import com.devtiago.refurbtracker.refurb_rh.entity.TemporaryEmployee;
 import com.devtiago.refurbtracker.refurb_rh.entity.dto.InternalEmployeeDto;
 import com.devtiago.refurbtracker.refurb_rh.entity.dto.TemporaryEmployeeDto;
 import com.devtiago.refurbtracker.refurb_rh.service.EmployeeService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,14 +35,19 @@ public class EmployeeController {
         return employeeService.findAllTemporaryEmployees();
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/add/intern")
-    public InternalEmployeeDto create(@RequestBody InternalEmployeeDto employee){
-        return employeeService.createNewEmployee(employee);
+    public ResponseEntity<InternalEmployeeDto> create(@RequestBody @Valid InternalEmployeeDto employee){
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(employeeService.createNewEmployee(employee));
     }
 
     @PostMapping("/add/temporary")
-    public TemporaryEmployeeDto create(@RequestBody TemporaryEmployee employee){
-        return employeeService.createNewEmployee(employee);
+    public ResponseEntity<TemporaryEmployeeDto> create(@RequestBody @Valid TemporaryEmployeeDto employee){
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(employeeService.createNewEmployee(employee));
     }
 
     @GetMapping("/internal/{id}")

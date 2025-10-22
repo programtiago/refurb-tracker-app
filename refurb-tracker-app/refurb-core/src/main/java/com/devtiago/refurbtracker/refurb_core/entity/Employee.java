@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
@@ -34,6 +35,7 @@ public abstract class Employee {
     private String lastName;
     @NotNull(message = "The field 'birthday_date' is mandatory.")
     @Column(name = "birthday_date", nullable = false)
+    @Past
     private LocalDate birthdayDate;
     @NotNull(message = "The field 'department' is mandatory.")
     @Size(min = 2, max = 15, message = "The field 'department' must be between 3 and 10 characters.")
@@ -56,19 +58,20 @@ public abstract class Employee {
     @Column(name = "active", nullable = false)
     @Builder.Default
     private boolean active = true;
-    @NotBlank(message = "The field 'display_name' is mandatory.")
     @Column(name = "display_name", nullable = false)
     private String displayName;
-    @NotBlank(message = "The field 'display_name' is mandatory.")
+    @NotBlank(message = "The field 'phone_number' is mandatory.")
     @Column(name = "phone_number", nullable = false, length = 15, unique = true)
     private String phoneNumber;
 
+    /*
     @PrePersist
     public void onCreation(){
         if (displayName == null || displayName.isBlank()){
             setDisplayName();
         }
     }
+     */
 
-    public abstract void setDisplayName();
+    //public abstract void setDisplayName();
 }

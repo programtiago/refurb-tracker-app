@@ -40,7 +40,7 @@ public class EmployeeService {
     }
 
     public InternalEmployeeDto createNewEmployee(InternalEmployeeDto employee){
-        InternalEmployee internalEmployeeToSave = employeeMapper.onCreate(employee);
+        InternalEmployee internalEmployeeToSave = employeeMapper.toEntityOnCreateInternalEmployee(employee);
 
         if (internalEmployeeRepository.existsByWorkerNo(internalEmployeeToSave.getWorkerNo())){
             throw new DuplicateIdentifierException("worker number", internalEmployeeToSave.getWorkerNo());
@@ -51,16 +51,16 @@ public class EmployeeService {
         return employeeMapper.toInternalEmployeeDto(savedInternalEmployee);
     }
 
-    public TemporaryEmployeeDto createNewEmployee(TemporaryEmployee employee){
-        TemporaryEmployeeDto temporaryEmployeeToSave = employeeMapper.toTemporaryEmployeeDto(employee);
+    public TemporaryEmployeeDto createNewEmployee(TemporaryEmployeeDto employee){
+        TemporaryEmployee temporaryEmployeeToSave = employeeMapper.toEntityOnCreateTemporaryEmployee(employee);
 
-        if (temporaryEmployeeRepository.existsByEloCode(temporaryEmployeeToSave.eloCode())){
-            throw new DuplicateIdentifierException("elo Code", temporaryEmployeeToSave.eloCode());
+        if (temporaryEmployeeRepository.existsByEloCode(temporaryEmployeeToSave.getEloCode())){
+            throw new DuplicateIdentifierException("elo Code", temporaryEmployeeToSave.getEloCode());
         }
 
-        TemporaryEmployee savedTemporaryEmployee = temporaryEmployeeRepository.save(employeeMapper.toTemporaryEmployeeEntity(temporaryEmployeeToSave));
+        TemporaryEmployee savedTemporaryEmployee = temporaryEmployeeRepository.save(temporaryEmployeeToSave);
 
-        return employeeMapper.onCreate(savedTemporaryEmployee);
+        return employeeMapper.toTemporaryEmployeeDto(savedTemporaryEmployee);
     }
 
     public InternalEmployeeDto findInternalEmployeeById(Long id){

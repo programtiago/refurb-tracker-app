@@ -27,8 +27,10 @@ public class InternalEmployee extends Employee {
         this.employeeType = EmployeeType.INTERNAL;
     }
 
+    /*
     @Override
     public void setDisplayName() {
         setDisplayName("[" + this.workerNo + "]-" + this.getFirstName() + " " + this.getLastName());
     }
+     */
 }
