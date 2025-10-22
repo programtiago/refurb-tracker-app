@@ -25,7 +25,7 @@
 
           <mat-form-field appearance="fill" class="w-full">
             <mat-label>Birthday Date</mat-label>
-            <input matInput [matDatepicker]="birthdayDatePicker">
+            <input matInput [matDatepicker]="birthdayDatePicker" formControlName="birthdayDate">
             <mat-datepicker-toggle matIconPrefix [for]="birthdayDatePicker"></mat-datepicker-toggle>
             <mat-datepicker #birthdayDatePicker></mat-datepicker>
           </mat-form-field>
@@ -106,7 +106,7 @@
         </div>
     </mat-card-content>
     <mat-card-actions align="end">
-      <button class="btn-save" mat-raised-button color="primary" [disabled]="!employeeForm.valid">
+      <button class="btn-save" (click)="onCreate()" mat-raised-button color="primary" [disabled]="!employeeForm.valid">
         Save Employee
       </button>    
     </mat-card-actions>

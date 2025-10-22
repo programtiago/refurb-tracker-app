@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RhService } from '../../../../rh/services/rh.service';
-import { MenuItem } from '../../../../rh/model/MenuItem';
+import { MenuItem } from '../../../../rh/model/menuItem';
 import { ChildrenMenuItem } from '../../../../rh/model/ChildrenMenuItem';
 
 @Component({

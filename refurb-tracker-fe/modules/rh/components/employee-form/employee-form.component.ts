@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RhService } from '../../services/rh.service';
+import { InternalEmployee } from '../../model/internalEmployee';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-employee-form',
@@ -23,7 +25,7 @@ export class EmployeeFormComponent implements OnInit {
     { value: 'PROD', viewValue: 'Production'}
   ]
 
-  constructor(private fb: FormBuilder, private rhService: RhService){}
+  constructor(private fb: FormBuilder, private rhService: RhService, private datePipe: DatePipe){}
 
   ngOnInit(): void {
     this.buildBaseForm();
@@ -42,8 +44,7 @@ export class EmployeeFormComponent implements OnInit {
       department: ['', Validators.required],
       position: ['', Validators.required],
       admissionDate: ['', Validators.required],
-      active: [true],
-      employeeType: ['', Validators.required]
+      employeeType: ['']
     });
   }
 
@@ -63,12 +64,45 @@ export class EmployeeFormComponent implements OnInit {
     }
   }
 
-  onSubmit(): void {
-    if (this.employeeForm.valid) {
-      if (this.employeeForm.value('employeeType') == 'INTERNAL'){
-        this.s
-      }
+  onCreate(): void {
+    const type = this.employeeForm.value['employeeType'];
+
+    if (!this.employeeForm.valid){
+      console.log('Form invalid', this.employeeForm.value);
+      return;
+    } 
+
+    //const employeeDataToSave = this.employeeForm.value
+    const employeeDataToSave : Partial<InternalEmployee> = {
+      firstName: this.employeeForm.value['firstName'],
+      lastName: this.employeeForm.value['lastName'],
+      birthdayDate: this.datePipe.transform(this.employeeForm.value['birthdayDate'], 'yyyy-MM-dd') ?? undefined,
+      admissionDate: this.datePipe.transform(this.employeeForm.value['admissionDate'], 'yyyy-MM-dd') ?? undefined,
+      department: this.employeeForm.value['department'],
+      workerNo: this.employeeForm.value['workerNo'],
+      phoneNumber: this.employeeForm.value['phoneNumber'],
+      position: this.employeeForm.value['position']
     }
+    console.log(employeeDataToSave)
+
+      if (type === 'INTERNAL'){
+        console.log('Internal')
+        this.rhService.createInternalEmployee(employeeDataToSave)
+        .subscribe({
+          next: (response) => {
+            console.log('HTTP status:', response.status); // 201 
+            console.log('Employee created:', response.body);
+
+            if (response.status === 201){
+              console.log('Sucessfully created!');
+              this.employeeForm.reset();
+            }
+          },
+          error: (err) => {
+            console.error('Error creating internal employee', err)
+          }
+        })
+      }
   }
 
 }

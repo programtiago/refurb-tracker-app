@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../src/environments/environment';
 import { Observable } from 'rxjs';
@@ -16,7 +16,11 @@ export class RhService {
     return this.http.get<MenuItem[]>(`${environment.apiUrl}/menus?department=HR`)
   }
 
-  createInternalEmployee(employeeData: InternalEmployee) {
-    this.http.post<InternalEmployee>(`${environment.apiUrl}/employees/add/intern`, employeeData);
+  createInternalEmployee(employeeData: Partial<InternalEmployee>): Observable<HttpResponse<InternalEmployee>> {
+    return this.http.post<InternalEmployee>(
+      `${environment.apiUrl}/employees/add/intern`,
+      employeeData, 
+      { observe: 'response' }
+    );
   }
 }
