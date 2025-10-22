@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RhService } from '../../services/rh.service';
 
 @Component({
   selector: 'app-employee-form',
@@ -22,7 +23,7 @@ export class EmployeeFormComponent implements OnInit {
     { value: 'PROD', viewValue: 'Production'}
   ]
 
-  constructor(private fb: FormBuilder){}
+  constructor(private fb: FormBuilder, private rhService: RhService){}
 
   ngOnInit(): void {
     this.buildBaseForm();
@@ -64,7 +65,9 @@ export class EmployeeFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.employeeForm.valid) {
-      console.log('Employee Data:', this.employeeForm.value);
+      if (this.employeeForm.value('employeeType') == 'INTERNAL'){
+        this.s
+      }
     }
   }
 
