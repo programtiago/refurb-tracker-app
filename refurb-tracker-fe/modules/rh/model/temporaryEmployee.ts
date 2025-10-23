@@ -1,6 +1,6 @@
-import { Employee } from "./employee";
+import { BaseEmployee } from "./employee";
 
-export interface TemporaryEmployee extends Employee {
+export interface TemporaryEmployee extends BaseEmployee {
     eloCode: string;
     contractStartDate: Date;
     contractEndDate: Date;

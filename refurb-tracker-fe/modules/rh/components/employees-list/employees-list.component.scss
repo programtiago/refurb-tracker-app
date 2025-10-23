@@ -1,0 +1,121 @@
+.equipments-table-container {
+    height: 70vh;
+    overflow: hidden;
+    margin: 2em auto;
+
+    display: flex;
+    flex-direction: column;
+
+    .equipments-table-card {
+        background-color: #2e2e2e !important;
+
+        mat-card-content {
+            height: 100%;
+            padding: 0;
+            flex: 1;
+
+            .table-container {
+                max-height: 70vh;
+                overflow-y: auto;
+                overflow-x: auto;
+            }
+
+            table.mat-mdc-table {
+                width: 100%;
+                background-color: #2e2e2e;
+
+                .mat-mdc-cell {
+                    color: #f0f0f0;
+                }
+
+                th.mat-mdc-header-cell, td.mat-mdc-cell {
+                    padding: 8px 16px;
+                }
+
+                th.mat-mdc-header-cell {
+                    background-color: #3a3a3a;
+                    color: white;
+                    font-weight: bold;
+                    position: sticky;
+                    top: 0;
+                    z-index: 2;
+                }
+
+                tr.mat-mdc-row:hover {
+                    background-color: #424242 !important;
+                    cursor: pointer !important;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 480px) and (max-width: 1536px){
+    .equipments-table-container {
+        height: 70vh;
+        width: 90%;
+    } 
+
+    //Ajustar largura das colunas
+    .mat-column-firstName {
+    width: 200px;
+    max-width: 120px;
+    min-width: 120px;
+    }
+
+    .mat-column-lastName {
+        width: 120px;
+        max-width: 150px;
+        min-width: 120px;
+    }
+
+    .mat-column-birthdayDate {
+        width: 120px;
+        max-width: 150px;
+        min-width: 120px;
+    }
+
+    .mat-column-position {
+        width: 250px;
+        max-width: 300px;
+        min-width: 250px;
+    }
+
+    .mat-column-admissionDate {
+        width: 140px;
+        max-width: 150px;
+        min-width: 140px;
+    }
+
+    .mat-column-createdAt {
+        width: 160px;
+        max-width: 250px;
+        min-width: 160px;
+    }
+
+    .mat-column-type {
+        width: 150px;
+        max-width: 180px;
+        min-width: 150px;
+    }
+
+    .mat-column-workerNo {
+        width: 100px;
+        max-width: 120px;
+        min-width: 100px;
+    }
+
+    .mat-column-hiringEmploymentCompany {
+        width: 180px;
+        max-width: 200px;
+        min-width: 180px;
+    }
+}
+
+@media screen and (min-width: 1537px) and (max-width: 2560px){
+    .equipments-table-container {
+        width: 85%;
+        margin-top: 5em;
+    } 
+}
+

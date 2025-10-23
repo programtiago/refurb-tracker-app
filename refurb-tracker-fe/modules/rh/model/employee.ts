@@ -1,4 +1,7 @@
-export interface Employee {
+import { InternalEmployee } from "./internalEmployee";
+import { TemporaryEmployee } from "./temporaryEmployee";
+
+export interface BaseEmployee {
     id: number;
     firstName: string;
     lastName: string;
@@ -13,3 +16,5 @@ export interface Employee {
     employeeType: 'INTERNAL' | 'TEMPORARY';
     phoneNumber: string;
 }
+
+export type Employee = InternalEmployee | TemporaryEmployee

@@ -1,5 +1,5 @@
-import { Employee } from "./employee";
+import { BaseEmployee } from "./employee";
 
-export interface InternalEmployee extends Employee {
+export interface InternalEmployee extends BaseEmployee {
     workerNo: string;
 }

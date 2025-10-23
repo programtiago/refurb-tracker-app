@@ -4,6 +4,7 @@ import { environment } from '../../../src/environments/environment';
 import { Observable } from 'rxjs';
 import { MenuItem } from '../model/menuItem';
 import { InternalEmployee } from '../model/internalEmployee';
+import { Employee } from '../model/employee';
 
 @Injectable({
   providedIn: 'root'
@@ -22,5 +23,9 @@ export class RhService {
       employeeData, 
       { observe: 'response' }
     );
+  }
+
+  getAllEmployee(): Observable<Employee[]>{
+    return this.http.get<Employee[]>(`${environment.apiUrl}/employees`)
   }
 }
