@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RhService } from '../../services/rh.service';
 import { InternalEmployee } from '../../model/internalEmployee';
 import { DatePipe } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-form',
@@ -22,10 +24,17 @@ export class EmployeeFormComponent implements OnInit {
     { value: 'HR', viewValue: 'Human Resources'},
     { value: 'ADMIN', viewValue: 'Administration'},
     { value: 'LOG', viewValue: 'Logistic'},
-    { value: 'PROD', viewValue: 'Production'}
+    { value: 'PROD', viewValue: 'Production'},
+    { value: 'QA', viewValue: 'Quality Assurance'}
   ]
 
-  constructor(private fb: FormBuilder, private rhService: RhService, private datePipe: DatePipe){}
+  constructor(
+    private fb: FormBuilder, 
+    private rhService: RhService, 
+    private datePipe: DatePipe, 
+    private snackbar: MatSnackBar,
+    private router: Router
+  ){}
 
   ngOnInit(): void {
     this.buildBaseForm();
@@ -37,8 +46,8 @@ export class EmployeeFormComponent implements OnInit {
 
   buildBaseForm(): void {
     this.employeeForm = this.fb.group({
-      firstName: ['', [Validators.required, Validators.minLength(3)]],
-      lastName: ['', Validators.required],
+      firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
+      lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       birthdayDate: [''],
       phoneNumber: ['', Validators.required],
       department: ['', Validators.required],
@@ -90,12 +99,21 @@ export class EmployeeFormComponent implements OnInit {
         this.rhService.createInternalEmployee(employeeDataToSave)
         .subscribe({
           next: (response) => {
-            console.log('HTTP status:', response.status); // 201 
-            console.log('Employee created:', response.body);
+            //console.log('HTTP status:', response.status); // 201 
+            //console.log('Employee created:', response.body);
 
             if (response.status === 201){
-              console.log('Sucessfully created!');
-              this.employeeForm.reset();
+              if (employeeDataToSave.employeeType == 'INTERNAL'){
+                console.log("Employee created", employeeDataToSave);
+                this.snackbar.open(`Internal Employee created sucessfully: ${employeeDataToSave.firstName + "" + employeeDataToSave.lastName } with worker number ${employeeDataToSave.workerNo}`, 'X', {
+                  duration: 5000
+                })
+                setTimeout(() => {
+                  this.router.navigateByUrl('/employees')
+                }, 4000);
+              }else if (employeeDataToSave.employeeType == 'TEMPORARY'){
+                console.log("Employee created", employeeDataToSave);
+              }
             }
           },
           error: (err) => {

@@ -53,4 +53,8 @@ export class EmployeesListComponent implements OnInit{
     })
   }
 
+  openEditMode(id: string){
+    
+  }
+
 }
