@@ -31,6 +31,11 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
+    public Employee findById(Long id){
+        return employeeRepository.findById(id)
+                .orElseThrow(() -> new EmployeeNotFoundException(id));
+    }
+
     public List<InternalEmployeeDto> findAllInternEmployees(){
         return employeeMapper.toInternalEmployeeDtoList(internalEmployeeRepository.findAll());
     }
