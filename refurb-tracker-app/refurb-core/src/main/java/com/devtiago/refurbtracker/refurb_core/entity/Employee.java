@@ -63,15 +63,4 @@ public abstract class Employee {
     @NotBlank(message = "The field 'phone_number' is mandatory.")
     @Column(name = "phone_number", nullable = false, length = 15, unique = true)
     private String phoneNumber;
-
-    /*
-    @PrePersist
-    public void onCreation(){
-        if (displayName == null || displayName.isBlank()){
-            setDisplayName();
-        }
-    }
-     */
-
-    //public abstract void setDisplayName();
 }

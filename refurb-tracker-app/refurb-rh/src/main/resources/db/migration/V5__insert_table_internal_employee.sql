@@ -2,4 +2,7 @@ INSERT INTO TB_INTERNAL_EMPLOYEE
 (id, worker_no, employee_type)
 VALUES
 (1, '83508', 'INTERNAL'),
-(2, '83485', 'INTERNAL');
+(2, '83485', 'INTERNAL'),
+(5, '83622', 'INTERNAL'),
+(7, '83623', 'INTERNAL'),
+(8, '83624', 'INTERNAL');

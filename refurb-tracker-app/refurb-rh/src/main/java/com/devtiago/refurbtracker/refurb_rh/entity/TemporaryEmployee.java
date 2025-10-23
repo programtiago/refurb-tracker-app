@@ -30,11 +30,4 @@ public class TemporaryEmployee extends Employee {
     protected void onCreate(){
         this.employeeType = EmployeeType.TEMPORARY;
     }
-
-    /*
-    @Override
-    public void setDisplayName() {
-        this.setDisplayName("[" + this.eloCode + "]-" + this.getFirstName() + " " + this.getLastName());
-    }
-     */
 }
