@@ -1,12 +1,17 @@
-.mat-dialog {
-    background-color: #2e2e2e;
+.mat-mdc-dialog-container {
+  --mdc-dialog-container-color: #2e2e2e; 
+  --mdc-dialog-container-shape: 0.9em;      
 }
 
-.mat-dialog-content {
-    font-size: 14px;
-    color: black;
-}
-
-h2 {
+.mat-mdc-dialog-title {
   color: #d32f2f;
+}
+
+h1[mat-dialog-title] {
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.mat-mdc-dialog-content p {
+    color: white !important;
 }

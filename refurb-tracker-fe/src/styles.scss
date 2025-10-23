@@ -2,3 +2,7 @@
 
 html, body { height: 100%; margin: 0}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; padding: 0; overflow: hidden;}
+
+.error-dialog-container {
+    --mdc-dialog-container-color: #3b3b3b;
+}

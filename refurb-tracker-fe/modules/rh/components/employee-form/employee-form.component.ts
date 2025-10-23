@@ -5,6 +5,7 @@ import { InternalEmployee } from '../../model/internalEmployee';
 import { DatePipe } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { ErrorDialogService } from '../../../core/shared/services/error-dialog.service';
 
 @Component({
   selector: 'app-employee-form',
@@ -33,7 +34,8 @@ export class EmployeeFormComponent implements OnInit {
     private rhService: RhService, 
     private datePipe: DatePipe, 
     private snackbar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private errorDialog: ErrorDialogService
   ){}
 
   ngOnInit(): void {
@@ -81,7 +83,6 @@ export class EmployeeFormComponent implements OnInit {
       return;
     } 
 
-    //const employeeDataToSave = this.employeeForm.value
     const employeeDataToSave : Partial<InternalEmployee> = {
       firstName: this.employeeForm.value['firstName'],
       lastName: this.employeeForm.value['lastName'],
@@ -99,9 +100,6 @@ export class EmployeeFormComponent implements OnInit {
         this.rhService.createInternalEmployee(employeeDataToSave)
         .subscribe({
           next: (response) => {
-            //console.log('HTTP status:', response.status); // 201 
-            //console.log('Employee created:', response.body);
-
             if (response.status === 201){
               if (employeeDataToSave.employeeType == 'INTERNAL'){
                 console.log("Employee created", employeeDataToSave);
@@ -117,6 +115,10 @@ export class EmployeeFormComponent implements OnInit {
             }
           },
           error: (err) => {
+            this.errorDialog.openDialog(
+              err.error?.errorCode,
+              err.error?.message || 'Unexpected error ocurred.'
+            )
             console.error('Error creating internal employee', err)
           }
         })
