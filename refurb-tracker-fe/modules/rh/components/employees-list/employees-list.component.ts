@@ -22,16 +22,14 @@ export class EmployeesListComponent implements OnInit{
     'admissionDate', 
     'createdAt', 
     'status', 
-    //'displayName', 
     'phoneNumber',
     'type',
     //conditional fields
-    //'employeeId',
     'workerNo',
     'hiringEmploymentCompany',
-    //'eloCode',
-    //'contractStartDate',
-    //'contractEndDate'
+    'eloCode',
+    'contractStartDate',
+    'contractEndDate'
   ]
 
   constructor(private rhService: RhService){}

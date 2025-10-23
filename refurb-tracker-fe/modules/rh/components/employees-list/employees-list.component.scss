@@ -58,9 +58,9 @@
 
     //Ajustar largura das colunas
     .mat-column-firstName {
-    width: 200px;
-    max-width: 120px;
-    min-width: 120px;
+        width: 200px;
+        max-width: 120px;
+        min-width: 120px;
     }
 
     .mat-column-lastName {
@@ -106,6 +106,18 @@
     }
 
     .mat-column-hiringEmploymentCompany {
+        width: 180px;
+        max-width: 200px;
+        min-width: 180px;
+    }
+
+    .mat-column-contractStartDate {
+        width: 180px;
+        max-width: 200px;
+        min-width: 180px;
+    }
+
+    .mat-column-contractEndDate {
         width: 180px;
         max-width: 200px;
         min-width: 180px;
