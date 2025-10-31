@@ -57,7 +57,7 @@ export class EmployeeFormComponent implements OnInit {
       department: ['', Validators.required],
       position: ['', Validators.required],
       admissionDate: ['', Validators.required],
-      contractStarDate: ['', Validators.required],
+      contractStartDate: ['', Validators.required],
       contractEndDate: ['', Validators.required],
       employeeType: ['']
     });

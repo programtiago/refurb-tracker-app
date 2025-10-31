@@ -3,53 +3,41 @@
     Refurb Tracker App
     <span class="spacer"></span>
 
-    <!-- Trigger button -->
     <button
       mat-stroked-button
       color="primary"
-      [matMenuTriggerFor]="mainMenu"
-      style="color: white"
-    >
+      [matMenuTriggerFor]="rhMenu"
+      style="color: white">
       HR Menu
     </button>
 
-    <!-- Main menu -->
-    <mat-menu #mainMenu="matMenu">
+    <!-- RH menu with inline submenus -->
+    <mat-menu #rhMenu="matMenu" xPosition="before">
       <ng-container *ngFor="let item of menuItems">
-        <!-- Item with submenu -->
-        <button
-          mat-menu-item
-          *ngIf="item.subMenuItems?.length"
-          [matMenuTriggerFor]="getSubMenu(item)"
-        >
-          <mat-icon>{{ item.description }}</mat-icon>
-          {{ item.title }}
-        </button>
+        <ng-container *ngIf="item.subMenuItems?.length; else singleItem">
+          <button mat-menu-item [matMenuTriggerFor]="subMenu">
+            {{ item.title }}
+          </button>
 
-        <!-- Item without submenu -->
-        <a
-          mat-menu-item
-          *ngIf="!item.subMenuItems?.length"
-          [routerLink]="item.path"
-        >
-          <mat-icon>{{ item.description }}</mat-icon>
-          {{ item.title }}
-        </a>
+          <mat-menu #subMenu="matMenu">
+            <button
+              mat-menu-item
+              *ngFor="let sub of item.subMenuItems"
+              [routerLink]="sub.path"
+            >
+              <mat-icon>{{ sub.icon }}</mat-icon>
+              {{ sub.title }}
+            </button>
+          </mat-menu>
+        </ng-container>
+
+        <ng-template #singleItem>
+          <a mat-menu-item [routerLink]="item.path">
+            <mat-icon>{{ item.description }}</mat-icon>
+            {{ item.title }}
+          </a>
+        </ng-template>
       </ng-container>
     </mat-menu>
-
-    <!-- Submenus -->
-    <ng-container *ngFor="let item of menuItems">
-      <mat-menu #menu="matMenu" *ngIf="item.subMenuItems?.length">
-        <a
-          mat-menu-item
-          *ngFor="let sub of item.subMenuItems"
-          [routerLink]="sub.path"
-        >
-          <mat-icon>{{ sub.icon }}</mat-icon>
-          {{ sub.title }}
-        </a>
-      </mat-menu>
-    </ng-container>
   </mat-toolbar-row>
 </mat-toolbar>

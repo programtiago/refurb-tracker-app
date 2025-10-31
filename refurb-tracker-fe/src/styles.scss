@@ -6,3 +6,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; padding: 0;
 .error-dialog-container {
     --mdc-dialog-container-color: #3b3b3b;
 }
+
+/* In your component.scss */
+::ng-deep .mat-mdc-menu-submenu-icon {
+  transform: scaleX(-1); /* flips the arrow horizontally */
+}
