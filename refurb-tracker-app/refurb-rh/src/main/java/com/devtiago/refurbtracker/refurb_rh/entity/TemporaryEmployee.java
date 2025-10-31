@@ -6,8 +6,6 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import java.time.LocalDate;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -17,9 +15,6 @@ import java.time.LocalDate;
 @Table(name = "TB_TEMPORARY_EMPLOYEE")
 public class TemporaryEmployee extends Employee {
 
-    private String eloCode;
-    private LocalDate contractStartDate;
-    private LocalDate contractEndDate;
     private String hiringEmploymentCompany;
     @Enumerated(EnumType.STRING)
     @Column(name = "employee_type", nullable = false)

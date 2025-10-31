@@ -2,5 +2,6 @@ rootProject.name = 'refurb-tracker-app'
 
 include(
         ":refurb-core",
-        ":refurb-rh"
+        ":refurb-rh",
+        ":refurb-ti"
 )

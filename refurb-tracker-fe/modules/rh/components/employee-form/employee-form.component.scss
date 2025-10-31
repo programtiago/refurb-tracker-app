@@ -45,14 +45,12 @@ mat-card {
     }
 }
 
-/*
-.btn-save {
-    color: white;
-}
-*/
-
 button.mat-mdc-raised-button:not(:disabled) {
     background-color: #4caf50;
+    color: white;
+}
+
+button.mat-mdc-raised-button:disabled {
     color: white;
 }
 

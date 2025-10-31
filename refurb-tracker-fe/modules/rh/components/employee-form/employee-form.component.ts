@@ -6,6 +6,7 @@ import { DatePipe } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ErrorDialogService } from '../../../core/shared/services/error-dialog.service';
+import { TemporaryEmployee } from '../../model/temporaryEmployee';
 
 @Component({
   selector: 'app-employee-form',
@@ -51,26 +52,22 @@ export class EmployeeFormComponent implements OnInit {
       firstName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(10)]],
       lastName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
       birthdayDate: [''],
+      workerNo: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(5)]],
       phoneNumber: ['', Validators.required],
       department: ['', Validators.required],
       position: ['', Validators.required],
       admissionDate: ['', Validators.required],
+      contractStarDate: ['', Validators.required],
+      contractEndDate: ['', Validators.required],
       employeeType: ['']
     });
   }
 
   updateFormForType(type: string): void {
-    ['workerNo', 'eloCode', 'contractStartDate', 'contractEndDate', 'hiringEmploymentCompany']
+    ['hiringEmploymentCompany']
       .forEach(field => this.employeeForm.removeControl(field));
 
-    if (type === 'INTERNAL') {
-      this.employeeForm.addControl('workerNo', this.fb.control('', Validators.required));
-    }
-
     if (type === 'TEMPORARY') {
-      this.employeeForm.addControl('eloCode', this.fb.control('', Validators.required)); 
-      this.employeeForm.addControl('contractStartDate', this.fb.control('', Validators.required));
-      this.employeeForm.addControl('contractEndDate', this.fb.control('', Validators.required));
       this.employeeForm.addControl('hiringEmploymentCompany', this.fb.control('', Validators.required));
     }
   }
@@ -83,11 +80,13 @@ export class EmployeeFormComponent implements OnInit {
       return;
     } 
 
-    const employeeDataToSave : Partial<InternalEmployee> = {
+    const employeeDataToSave : Partial<InternalEmployee | TemporaryEmployee> = {
       firstName: this.employeeForm.value['firstName'],
       lastName: this.employeeForm.value['lastName'],
       birthdayDate: this.datePipe.transform(this.employeeForm.value['birthdayDate'], 'yyyy-MM-dd') ?? undefined,
       admissionDate: this.datePipe.transform(this.employeeForm.value['admissionDate'], 'yyyy-MM-dd') ?? undefined,
+      contractStartDate: this.employeeForm.value['contractStartDate'],
+      contractEndDate: this.employeeForm.value['contractEndDate'],
       department: this.employeeForm.value['department'],
       workerNo: this.employeeForm.value['workerNo'],
       phoneNumber: this.employeeForm.value['phoneNumber'],

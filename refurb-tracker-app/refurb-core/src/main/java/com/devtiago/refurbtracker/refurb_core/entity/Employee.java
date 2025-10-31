@@ -37,6 +37,9 @@ public abstract class Employee {
     @Column(name = "birthday_date", nullable = false)
     @Past
     private LocalDate birthdayDate;
+    @Size(min = 5, max = 5)
+    @Column(name = "worker_no",  unique = true)
+    private String workerNo;
     @NotNull(message = "The field 'department' is mandatory.")
     @Size(min = 2, max = 15, message = "The field 'department' must be between 3 and 10 characters.")
     @Column(name = "department", nullable = false, length = 15)
@@ -63,4 +66,12 @@ public abstract class Employee {
     @NotBlank(message = "The field 'phone_number' is mandatory.")
     @Column(name = "phone_number", nullable = false, length = 15, unique = true)
     private String phoneNumber;
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    @Column(name = "contract_start_date", nullable = false)
+    @NotNull(message = "The field 'contractStartDate' is mandatory.")
+    private LocalDate contractStartDate;
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    @Column(name = "contract_end_date", nullable = false)
+    @NotNull(message = "The field 'contractEndDate' is mandatory.")
+    private LocalDate contractEndDate;
 }

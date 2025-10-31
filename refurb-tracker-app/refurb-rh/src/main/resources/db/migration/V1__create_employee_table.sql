@@ -10,5 +10,8 @@ CREATE TABLE TB_EMPLOYEE (
     status VARCHAR(50) NOT NULL,
     active BOOLEAN NOT NULL DEFAULT TRUE,
     display_name VARCHAR(40) NOT NULL,
-    phone_number VARCHAR(15) NOT NULL
+    phone_number VARCHAR(15) NOT NULL,
+    worker_no VARCHAR(5) UNIQUE NOT NULL,
+    contract_start_date DATE NOT NULL,
+    contract_end_date DATE NOT NULL
 );

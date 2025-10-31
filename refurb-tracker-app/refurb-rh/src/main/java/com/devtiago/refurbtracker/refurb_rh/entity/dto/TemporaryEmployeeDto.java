@@ -21,23 +21,23 @@ public record TemporaryEmployeeDto(
     String lastName,
     @NotNull(message = "The field 'birthdayDate' is mandatory.")
     LocalDate birthdayDate,
+    @NotBlank(message = "The field 'workerNo' is mandatory.")
+    String workerNo,
     @NotBlank(message = "The field 'department' is mandatory.")
     String department,
     @NotBlank(message = "The field 'position' is mandatory.")
     String position,
     @NotNull(message = "The field 'admissionDate' is mandatory.")
     LocalDate admissionDate,
+    @NotNull(message = "The field 'contractStartDate' is mandatory.")
+    LocalDate contractStartDate,
+    @NotNull(message = "The field 'contractEndDate' is mandatory.")
+    LocalDate contractEndDate,
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
     LocalDateTime registryDate,
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     StatusEmployee status,
-    @NotBlank(message = "The field 'eloCode' is mandatory.")
-    String eloCode,
-    @NotNull(message = "The field 'contractStartDate' is mandatory.")
-    LocalDate contractStartDate,
-    @NotNull(message = "The field 'contractEndDate' is mandatory.")
-    LocalDate contractEndDate,
     @NotBlank(message = "The field 'hiringEmploymentCompany' is mandatory.")
     String hiringEmploymentCompany,
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)

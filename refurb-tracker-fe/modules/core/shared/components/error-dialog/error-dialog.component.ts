@@ -16,5 +16,4 @@ export class ErrorDialogComponent {
   onClose(){
     this.dialog.close();
   }
-
 }

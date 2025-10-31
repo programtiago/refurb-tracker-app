@@ -15,8 +15,6 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "TB_INTERNAL_EMPLOYEE")
 public class InternalEmployee extends Employee {
 
-    @Column(name = "worker_no",  unique = true)
-    private String workerNo;
     @Enumerated(EnumType.STRING)
     @Column(name = "employee_type", nullable = false)
     @Builder.Default
