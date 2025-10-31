@@ -27,7 +27,6 @@ export class EmployeesListComponent implements OnInit{
     //conditional fields
     'workerNo',
     'hiringEmploymentCompany',
-    'eloCode',
     'contractStartDate',
     'contractEndDate'
   ]

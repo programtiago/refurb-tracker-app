@@ -1,4 +1,4 @@
-import { ChildrenMenuItem } from "./ChildrenMenuItem";
+import { ChildrenMenuItem } from "./childrenMenuItem";
 
 export interface MenuItem {
     title: string;

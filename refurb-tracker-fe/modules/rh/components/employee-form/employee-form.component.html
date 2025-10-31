@@ -60,23 +60,15 @@
             <mat-datepicker #admissionDatePicker></mat-datepicker>
           </mat-form-field>
           
-          <div *ngIf="employeeForm.get('workerNo')">
+          <div>
             <mat-form-field appearance="fill" class="w-full">
               <mat-label>Worker Number</mat-label>
               <input matInput formControlName="workerNo" />
               <mat-icon matPrefix>badge</mat-icon>
             </mat-form-field>
           </div>
-
-          <div *ngIf="employeeForm.get('eloCode')">
-            <mat-form-field appearance="fill" class="w-full">
-              <mat-label>ELO Code</mat-label>
-              <input matInput formControlName="eloCode" />
-              <mat-icon matPrefix>badge</mat-icon> 
-            </mat-form-field>
-          </div>  
-          
-          <div *ngIf="employeeForm.get('contractStartDate')">
+        
+          <div>
             <mat-form-field class="w-full">
               <mat-label>Contract Start Date</mat-label>
               <input matInput [matDatepicker]="contractStartDatePicker" formControlName="contractStartDate">
@@ -86,7 +78,7 @@
             </mat-form-field>
           </div>  
           
-          <div *ngIf="employeeForm.get('contractEndDate')">
+          <div>
             <mat-form-field class="w-full">
               <mat-label>Contract End Date</mat-label>
               <input matInput [matDatepicker]="contractEndDatePicker" formControlName="contractEndDate">

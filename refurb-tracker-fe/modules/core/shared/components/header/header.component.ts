@@ -1,26 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { RhService } from '../../../../rh/services/rh.service';
 import { MenuItem } from '../../../../rh/model/menuItem';
-import { ChildrenMenuItem } from '../../../../rh/model/ChildrenMenuItem';
+import { MatMenu } from '@angular/material/menu';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
 
   menuItems: MenuItem[] = [];
-  subMenuItems: ChildrenMenuItem[] = []
 
-  constructor(private rhService: RhService){
-    this.rhService.getMenuItemsList().subscribe((res) => {
-      this.menuItems = res;
-      
-      this.subMenuItems = res.flatMap(menu => menu.subMenuItems);
+  @ViewChildren(MatMenu) menus!: QueryList<MatMenu>;
 
-      console.log("Menu Items: ", this.menuItems);
-      console.log("Sub Menu Items: ", this.subMenuItems);
+  ngOnInit(): void {
+    this.rhService.getMenuItemsList().subscribe({
+      next: (res) => (this.menuItems = res),
+      error: (err) => console.error('Error loading menu:', err)
     })
   }
+
+  constructor(private rhService: RhService){}
+
+  getSubMenu(item: MenuItem): MatMenu | null {
+    const index = this.menuItems.indexOf(item);
+    return this.menus?.toArray()[index + 1] ?? null;
+  }
+
 }

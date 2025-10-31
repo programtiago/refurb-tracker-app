@@ -8,7 +8,10 @@ export interface BaseEmployee {
     birthdayDate?: string;
     department: string;
     position: string;
+    workerNo: string;
     admissionDate?: string;
+    contractStartDate: string;
+    contractEndDate: string;
     createdAt: Date;
     status: string;
     active: boolean;

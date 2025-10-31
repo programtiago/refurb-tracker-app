@@ -1,17 +1,55 @@
 <mat-toolbar>
-    <mat-toolbar-row>
-        Refurb Tracker App
+  <mat-toolbar-row>
+    Refurb Tracker App
     <span class="spacer"></span>
-    <button matButton="outlined"  mat-stroked-button [matMenuTriggerFor]="rhMenu" style="color: white">
-        HR Menu    
-    </button> 
-    
-    <mat-menu #rhMenu="matMenu">
-        <button [routerLink]="submenuItem.path" mat-menu-item *ngFor="let submenuItem of subMenuItems">
-            <mat-icon>{{ submenuItem.icon }}</mat-icon>
-            <span>{{ submenuItem.title }}</span>
+
+    <!-- Trigger button -->
+    <button
+      mat-stroked-button
+      color="primary"
+      [matMenuTriggerFor]="mainMenu"
+      style="color: white"
+    >
+      HR Menu
+    </button>
+
+    <!-- Main menu -->
+    <mat-menu #mainMenu="matMenu">
+      <ng-container *ngFor="let item of menuItems">
+        <!-- Item with submenu -->
+        <button
+          mat-menu-item
+          *ngIf="item.subMenuItems?.length"
+          [matMenuTriggerFor]="getSubMenu(item)"
+        >
+          <mat-icon>{{ item.description }}</mat-icon>
+          {{ item.title }}
         </button>
+
+        <!-- Item without submenu -->
+        <a
+          mat-menu-item
+          *ngIf="!item.subMenuItems?.length"
+          [routerLink]="item.path"
+        >
+          <mat-icon>{{ item.description }}</mat-icon>
+          {{ item.title }}
+        </a>
+      </ng-container>
     </mat-menu>
 
-    </mat-toolbar-row>  
+    <!-- Submenus -->
+    <ng-container *ngFor="let item of menuItems">
+      <mat-menu #menu="matMenu" *ngIf="item.subMenuItems?.length">
+        <a
+          mat-menu-item
+          *ngFor="let sub of item.subMenuItems"
+          [routerLink]="sub.path"
+        >
+          <mat-icon>{{ sub.icon }}</mat-icon>
+          {{ sub.title }}
+        </a>
+      </mat-menu>
+    </ng-container>
+  </mat-toolbar-row>
 </mat-toolbar>
